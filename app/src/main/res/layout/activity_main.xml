@@ -41,6 +41,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
         android:layout_above="@id/voice_enable_btn">
 
         <ImageView
@@ -48,26 +50,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/previous"
+            android:layout_toLeftOf="@+id/play_pause_btn"
             android:layout_marginRight="30dp"
-            android:visibility="gone"/>
+            />
 
         <ImageView
             android:id="@+id/play_pause_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/play"
-            android:layout_toEndOf="@+id/previous_btn"
-            android:layout_marginRight="30dp"
-            android:visibility="gone"/>
+            android:layout_centerHorizontal="true"
+            />
 
         <ImageView
             android:id="@+id/next_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/next"
-            android:layout_toEndOf="@+id/play_pause_btn"
-            android:layout_marginRight="30dp"
-            android:visibility="gone"/>
+            android:layout_marginLeft="30dp"
+            android:layout_toRightOf="@+id/play_pause_btn"
+            />
 
 
     </RelativeLayout>

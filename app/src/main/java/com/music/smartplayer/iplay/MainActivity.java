@@ -121,9 +121,29 @@ public class MainActivity extends AppCompatActivity {
                 ArrayList<String> matchesFound = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 
                 // when found something the keeper will get the first string
-                if (matchesFound != null){
-                    keeper = matchesFound.get(0);
-                    Toast.makeText(MainActivity.this, "Result: "+keeper, Toast.LENGTH_LONG).show();
+                if (matchesFound != null) {
+
+                    if (mode.equals("ON")){
+                        keeper = matchesFound.get(0);
+
+                        if (keeper.equals("pause song") || keeper.equals("pause")) {
+                            playPauseSong();
+                            Toast.makeText(MainActivity.this, "You requested to : " + keeper, Toast.LENGTH_SHORT).show();
+                        }
+                        else if (keeper.equals("play song") || keeper.equals("play")) {
+                            playPauseSong();
+                            Toast.makeText(MainActivity.this, "You requested to : " + keeper, Toast.LENGTH_SHORT).show();
+                        }
+                        else if (keeper.equals("play next song") || keeper.equals("next song")) {
+                            playNextSong();
+                            Toast.makeText(MainActivity.this, "You requested to : " + keeper, Toast.LENGTH_SHORT).show();
+                        }
+                        else if (keeper.equals("play previous song") || keeper.equals("previous song")) {
+                            playPreviousSong();
+                            Toast.makeText(MainActivity.this, "You requested to : " + keeper, Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
                 }
             }
 
@@ -176,6 +196,32 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        // function of img buttons
+        playPauseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                playPauseSong();
+            }
+        });
+
+        previousBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (myMediaPlayer.getCurrentPosition() > 0 ){
+                    playPreviousSong();
+                }
+            }
+        });
+
+        nextBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (myMediaPlayer.getCurrentPosition() > 0 ){
+                    playNextSong();
+                }
+            }
+        });
     }
 
 
@@ -218,4 +264,84 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+    // function to play and pause the song using buttons as well as voice song
+    private void playPauseSong(){
+        logoImg.setBackgroundResource(R.drawable.four);
+
+        // if the song is playing
+        if (myMediaPlayer.isPlaying()){
+            playPauseBtn.setImageResource(R.drawable.play);
+            myMediaPlayer.pause();
+        }
+        // if the song is paused
+        else{
+            playPauseBtn.setImageResource(R.drawable.pause);
+            myMediaPlayer.start();
+
+            logoImg.setBackgroundResource(R.drawable.five);
+        }
+    }
+
+    // function for next and previous songs
+    private void playNextSong(){
+
+        myMediaPlayer.pause();
+        myMediaPlayer.stop();
+        myMediaPlayer.release();
+
+        position = ((position + 1) % mySongs.size());
+
+        Uri uri = Uri.parse(mySongs.get(position).toString());
+
+        myMediaPlayer = MediaPlayer.create(MainActivity.this, uri);
+
+        mSongName = mySongs.get(position).toString();
+
+        songNameTxt.setText(mSongName);
+        myMediaPlayer.start();
+
+        logoImg.setBackgroundResource(R.drawable.three);
+
+        if (myMediaPlayer.isPlaying()){
+            playPauseBtn.setImageResource(R.drawable.pause);
+        }
+        // if the song is paused
+        else{
+            playPauseBtn.setImageResource(R.drawable.play);
+
+            logoImg.setBackgroundResource(R.drawable.five);
+        }
+    }
+
+
+    private void playPreviousSong(){
+        myMediaPlayer.pause();
+        myMediaPlayer.stop();
+        myMediaPlayer.release();
+
+        position = ((position-1) < 0 ? (mySongs.size()-1) : (position-1));
+
+        Uri uri = Uri.parse(mySongs.get(position).toString());
+
+        myMediaPlayer = MediaPlayer.create(MainActivity.this, uri);
+
+        mSongName = mySongs.get(position).toString();
+
+        songNameTxt.setText(mSongName);
+        myMediaPlayer.start();
+
+        logoImg.setBackgroundResource(R.drawable.two);
+
+        if (myMediaPlayer.isPlaying()){
+            playPauseBtn.setImageResource(R.drawable.pause);
+        }
+        // if the song is paused
+        else{
+            playPauseBtn.setImageResource(R.drawable.play);
+
+            logoImg.setBackgroundResource(R.drawable.five);
+        }
+    }
+
 }
