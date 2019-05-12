@@ -1,9 +1,12 @@
 package com.music.smartplayer.iplay;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -92,5 +95,21 @@ public class Main2Activity extends AppCompatActivity {
         // adding the names to the list so as to display
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(Main2Activity.this, android.R.layout.simple_list_item_1, allItems);
         mSongsList.setAdapter(arrayAdapter);
+
+        // function when a user clicks on the list item
+        mSongsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                // get the name first then send the name info wth intent
+                String songName = mSongsList.getItemAtPosition(i).toString();
+                Intent intent = new Intent(Main2Activity.this, MainActivity.class);
+                intent.putExtra("song", audioSongs);
+                intent.putExtra("name", songName);
+                intent.putExtra("position", i);
+                startActivity(intent);
+
+            }
+        });
     }
 }

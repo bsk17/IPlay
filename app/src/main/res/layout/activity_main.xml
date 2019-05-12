@@ -11,12 +11,13 @@
     <RelativeLayout
         android:id="@+id/upper_relative_layout"
         android:layout_width="match_parent"
-        android:layout_height="330dp">
+        android:layout_height="400dp">
 
         <ImageView
             android:id="@+id/logo"
+            android:layout_margin="16dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="270dp" />
 
         <TextView
             android:id="@+id/song_name"
@@ -29,10 +30,59 @@
             android:textAllCaps="false"
             android:textColor="@color/colorPrimary"
             android:singleLine="true"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:marqueeRepeatLimit="marquee_forever"
             android:ellipsize="marquee"/>
 
     </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/lower_relative_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_above="@id/voice_enable_btn">
+
+        <ImageView
+            android:id="@+id/previous_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/previous"
+            android:layout_marginRight="30dp"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/play_pause_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/play"
+            android:layout_toEndOf="@+id/previous_btn"
+            android:layout_marginRight="30dp"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/next_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/next"
+            android:layout_toEndOf="@+id/play_pause_btn"
+            android:layout_marginRight="30dp"
+            android:visibility="gone"/>
+
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/voice_enable_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="8dp"
+        android:text="Voice Enable - ON"
+        android:textAllCaps="false"
+        android:textSize="24sp"
+        android:textColor="@android:color/white"
+
+        android:background="@color/colorPrimary"/>
 
 </RelativeLayout>
