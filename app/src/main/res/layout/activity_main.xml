@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    android:background="@drawable/gradient1"
     android:id="@+id/parent_relative_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -28,7 +29,7 @@
             android:textStyle="bold|italic"
             android:textAlignment="center"
             android:textAllCaps="false"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@android:color/white"
             android:singleLine="true"
             android:layout_marginTop="8dp"
             android:marqueeRepeatLimit="marquee_forever"
@@ -75,16 +76,30 @@
     </RelativeLayout>
 
     <Button
+
         android:id="@+id/voice_enable_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/exit_btn"
         android:layout_margin="8dp"
         android:text="Voice Enable - ON"
         android:textAllCaps="false"
         android:textSize="24sp"
         android:textColor="@android:color/white"
 
-        android:background="@color/colorPrimary"/>
+        android:background="@drawable/button_gradient"/>
+
+    <Button
+        android:id="@+id/exit_btn"
+        android:layout_margin="8dp"
+        android:background="@drawable/button_gradient"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Exit"
+        android:textAllCaps="false"
+        android:textSize="24sp"
+        android:textColor="@android:color/white"
+        />
 
 </RelativeLayout>

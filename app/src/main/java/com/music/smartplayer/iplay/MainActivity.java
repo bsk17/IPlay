@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RelativeLayout lowerRelativeLayout;
 
-    private Button voiceEnableBtn;
+    private Button voiceEnableBtn, exitBtn;
 
 
     private MediaPlayer myMediaPlayer;
@@ -70,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
         lowerRelativeLayout = findViewById(R.id.lower_relative_layout);
         voiceEnableBtn = findViewById(R.id.voice_enable_btn);
         songNameTxt = findViewById(R.id.song_name);
+
+        exitBtn = findViewById(R.id.exit_btn);
 
 
         parentRelativeLayout = findViewById(R.id.parent_relative_layout);
@@ -220,6 +222,15 @@ public class MainActivity extends AppCompatActivity {
                 if (myMediaPlayer.getCurrentPosition() > 0 ){
                     playNextSong();
                 }
+            }
+        });
+
+        // exit button function
+        exitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                System.exit(0);
             }
         });
     }
